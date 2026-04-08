@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te ajudei? Que tal me ajudar também?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+  .hero {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #f0a500;
+    color: #1a1a1a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 span { color: #f0a500; }
+  .hero p {
+    font-size: 1rem;
+    color: #ccc;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+  }
+  .video-wrap {
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0; left: 0;
+  }
+  .video-placeholder {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    padding: 2rem;
+  }
+  .alert-box {
+    background: #fff8e8;
+    border: 1.5px solid #f0a500;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .alert-box .alert-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #b37800;
+    margin-bottom: 0.5rem;
+  }
+  .alert-box p {
+    font-size: 14px;
+    color: #7a5c00;
+    line-height: 1.6;
+  }
+  .price-card {
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .price-label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  .price-value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .price-value sup {
+    font-size: 1.2rem;
+    font-weight: 700;
+    vertical-align: super;
+  }
+  .price-desc {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+  .pix-block {
+    background: #f0f9f0;
+    border: 1.5px solid #4caf50;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .pix-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pix-key {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    background: #fff;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: all;
+  }
+  .pix-copy-btn {
+    font-size: 11px;
+    color: #4caf50;
+    font-weight: 700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .pix-hint {
+    font-size: 12px;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  .divider {
+    height: 1px;
+    background: #e8e8e8;
+    margin: 2rem 0;
+  }
+  .comments-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+  .comment-form textarea {
+    width: 100%;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    background: #fff;
+    color: #1a1a1a;
+    margin-bottom: 0.75rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .comment-form textarea:focus { border-color: #f0a500; }
+  .comment-form input[type=text] {
+    width: 100%;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: #1a1a1a;
+    margin-bottom: 0.75rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .comment-form input[type=text]:focus { border-color: #f0a500; }
+  .btn-submit {
+    width: 100%;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: #333; }
+  .comment-list { margin-top: 1.5rem; }
+  .comment-item {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  .comment-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+  }
+  .comment-text {
+    font-size: 14px;
+    color: #444;
+  }
+  .comment-date {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+  .empty-comments {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 12px;
+    color: #aaa;
+    border-top: 1px solid #e8e8e8;
+    margin-top: 1rem;
+  }
+  .star-rating {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0.75rem;
+  }
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.15s;
+    user-select: none;
+  }
+  .star.active { color: #f0a500; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">Ajude um negócio!</div>
+  <h1>Você recebeu uma <span>capa protetora</span> para sua chave. Te ajudei?</h1>
+  <p>Assista o vídeo abaixo e entenda por que esse pequeno acessório pode te salvar de uma dor de cabeça enorme.</p>
+</div>
+
+<div class="section">
+
+  <div class="video-wrap">
+    <div class="video-placeholder">
+      &#9654; Cole aqui o link do seu vídeo<br>
+      <small style="color:#555;margin-top:8px;display:block">Substitua esta div por um iframe do YouTube ou Vimeo</small>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-title">&#9888; Sabia que a chave do seu Jeep pode custar até R$&nbsp;2.700?</div>
+    <p>A chave eletrônica do seu veículo é frágil. Uma queda, pressão errada ou simples desgaste podem travar o mecanismo. Trocar na concessionária custa entre R$&nbsp;1300 e R$&nbsp;2.700 só na peça, sem contar a mão de obra. <b>É bom se prevenir.<br><br> E o que acha de ajudar um negócio a alcançar seu objetivo?</b></p>
+  </div>
+
+  <div class="price-card">
+    <div class="price-label">Valor do produto que você está usando</div>
+    <div class="price-value"><sup>R$</sup>50</div>
+    <div class="price-desc">Esse valor representa 1% do valor de uma chave nova</div>
+
+    <div class="pix-block">
+      <div class="pix-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Pague pelo PIX:
+      </div>
+      <div class="pix-key" onclick="copyPix()">
+        <span id="pix-key-text">sartorievieira@gmail.com</span>
+        <button class="pix-copy-btn" id="copy-btn">COPIAR</button>
+      </div>
+      <div class="pix-hint">Toque na chave para copiar. Qualquer banco. 2 segundos.</div>
+    </div>
+
+    <p style="font-size:13px;color:#888;text-align:center;">Nenhuma obrigação. Pague se sentir que valeu.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="comments-title">Deixe seu feedback</div>
+
+  <div class="comment-form">
+    <input type="text" id="input-name" placeholder="Seu nome (pode ser apelido)">
+    <div class="star-rating" id="stars">
+      <span class="star" data-v="1">&#9733;</span>
+      <span class="star" data-v="2">&#9733;</span>
+      <span class="star" data-v="3">&#9733;</span>
+      <span class="star" data-v="4">&#9733;</span>
+      <span class="star" data-v="5">&#9733;</span>
+    </div>
+    <textarea id="input-comment" placeholder="O que achou da capa? Gostou? Ficou bem na chave? Conta pra mim!"></textarea>
+    <button class="btn-submit" onclick="submitComment()">Enviar feedback</button>
+  </div>
+
+  <div class="comment-list" id="comment-list">
+    <div class="empty-comments" id="empty-msg">Seja o primeiro a comentar!</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Feito com carinho em SP &mdash; produto importado direto, sem atravessador
+</div>
+
+<script>
+  var rating = 0;
+  var comments = JSON.parse(localStorage.getItem('capajeepcmts') || '[]');
+
+  document.querySelectorAll('.star').forEach(function(s) {
+    s.addEventListener('click', function() {
+      rating = parseInt(this.dataset.v);
+      document.querySelectorAll('.star').forEach(function(st) {
+        st.classList.toggle('active', parseInt(st.dataset.v) <= rating);
+      });
+    });
+  });
+
+  function copyPix() {
+    var key = document.getElementById('pix-key-text').textContent;
+    navigator.clipboard.writeText(key).then(function() {
+      document.getElementById('copy-btn').textContent = 'COPIADO!';
+      setTimeout(function() {
+        document.getElementById('copy-btn').textContent = 'COPIAR';
+      }, 2000);
+    });
+  }
+
+  function submitComment() {
+    var name = document.getElementById('input-name').value.trim();
+    var text = document.getElementById('input-comment').value.trim();
+    if (!name || !text) { alert('Por favor preencha seu nome e o comentário.'); return; }
+    var c = { name: name, text: text, rating: rating, date: new Date().toLocaleDateString('pt-BR') };
+    comments.unshift(c);
+    localStorage.setItem('capajeepcmts', JSON.stringify(comments));
+    document.getElementById('input-name').value = '';
+    document.getElementById('input-comment').value = '';
+    rating = 0;
+    document.querySelectorAll('.star').forEach(function(s) { s.classList.remove('active'); });
+    renderComments();
+  }
+
+  function renderComments() {
+    var list = document.getElementById('comment-list');
+    var empty = document.getElementById('empty-msg');
+    if (comments.length === 0) { empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+    list.innerHTML = '';
+    comments.forEach(function(c) {
+      var stars = '';
+      if (c.rating > 0) {
+        for (var i = 1; i <= 5; i++) {
+          stars += '<span style="color:' + (i <= c.rating ? '#f0a500' : '#ddd') + ';font-size:14px;">&#9733;</span>';
+        }
+      }
+      var div = document.createElement('div');
+      div.className = 'comment-item';
+      div.innerHTML = '<div class="comment-author">' + escHtml(c.name) + '</div>' +
+        (stars ? '<div>' + stars + '</div>' : '') +
+        '<div class="comment-text">' + escHtml(c.text) + '</div>' +
+        '<div class="comment-date">' + c.date + '</div>';
+      list.appendChild(div);
+    });
+  }
+
+  function escHtml(t) {
+    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  renderComments();
+</script>
+</body>
+</html>
