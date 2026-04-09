@@ -275,7 +275,7 @@
 
   function registrarVisita() {
     var payload = {
-      referenciador: document.referrer || null
+      user_agent: navigator.userAgent || null
     };
     fetch(API_VISITAS, {
       method: 'POST',
